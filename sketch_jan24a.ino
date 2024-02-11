@@ -1,20 +1,19 @@
 int t;
 
-const int RFOR = 11;
+const int LFOR = 11;
+const int LBACK = 10;
+const int RFOR = 13;
 const int RBACK = 12;
-const int LFOR = 10;
-const int LBACK = 13;
 
 
 void setup() {
-pinMode(LFOR,OUTPUT);   //left motors  forward
-pinMode(LBACK,OUTPUT);   //left motors reverse
-pinMode(RFOR,OUTPUT);   //right  motors forward-+
-pinMode(RBACK,OUTPUT);   //right motors reverse
-Serial.begin(9600);
-                                   
+  pinMode(LFOR,OUTPUT);   //left motors  forward
+  pinMode(LBACK,OUTPUT);   //left motors reverse
+  pinMode(RFOR,OUTPUT);   //right  motors forward-+
+  pinMode(RBACK,OUTPUT);   //right motors reverse
+  Serial.begin(9600);
 }
- 
+
 void loop() {
 if(Serial.available()){
   t = Serial.read();
@@ -24,8 +23,7 @@ if(Serial.available()){
 
   Serial.print("\n");
 
-  if(t == 70){
-    Serial.println( "NI");            //move  forward(all motors rotate in forward direction)
+  if(t == 70){          //move  forward(all motors rotate in forward direction)
   digitalWrite(LFOR,HIGH);
   digitalWrite(RFOR,HIGH);
 
@@ -33,8 +31,8 @@ if(Serial.available()){
   digitalWrite(RBACK,LOW);
 }
 
- 
- else if(t == "B"){   
+
+  else if(t == 66){   
      //move reverse (all  motors rotate in reverse direction)
   digitalWrite(LBACK,HIGH);
   digitalWrite(RBACK,HIGH);
@@ -43,14 +41,14 @@ if(Serial.available()){
   digitalWrite(RFOR,LOW);
 }
   
-else if(t == 76){      //turn LEFT (left side motors rotate in forward direction,  right side motors doesn't rotate)
+else if(t == 76){      //turn LEFT (right side motors rotate in forward direction,  right side motors doesn't rotate)
   digitalWrite(RFOR,HIGH);
 
   digitalWrite(LFOR,LOW);
   digitalWrite(RBACK,LOW);
   digitalWrite(LBACK,LOW);
 }   
- 
+
 else  if(t == 82){      //turn RT (right side motors rotate in forward direction, left  side motors doesn't rotate)
   digitalWrite(LFOR,HIGH);
 
@@ -69,4 +67,4 @@ else if(t ==83){
 delay(100);
 }
 }
- 
+
