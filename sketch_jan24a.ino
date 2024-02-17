@@ -6,9 +6,10 @@ const int RFOR = 9;
 const int RBACK = 6;
 
 //delay timing
-const int Spin_D = 215;
+const int Spin_D_R = 205;
+const int Spin_D_L = 198;
 const int Line_D = 315;
-const int Orient_D = 80;
+const int Orient_D = 60;
 
 
 void setup() {
@@ -28,7 +29,7 @@ if(Serial.available()){
 
   Serial.print("\n");
 
-  if(t == 70){          //move  forward(all motors rotate in forward direction)
+  if(t == 55){          //move  forward(all motors rotate in forward direction)
   digitalWrite(LFOR,HIGH);
   digitalWrite(RFOR,HIGH);
 
@@ -37,13 +38,13 @@ if(Serial.available()){
 
   delay(Line_D);
 
-  digitalWrite(RFOR,HIGH);
-  digitalWrite(LBACK,HIGH);
+  // digitalWrite(RFOR,HIGH);
+  // digitalWrite(LBACK,HIGH);
 
-  digitalWrite(LFOR,LOW);
-  digitalWrite(RBACK,LOW);
+  // digitalWrite(LFOR,LOW);
+  // digitalWrite(RBACK,LOW);
 
-  delay(Orient_D);
+  // delay(Orient_D);
 
   digitalWrite(LFOR,LOW);
   digitalWrite(LBACK,LOW);
@@ -52,7 +53,7 @@ if(Serial.available()){
 }
 
 
-  else if(t == 66){   
+  else if(t == 54){   
      //move reverse (all  motors rotate in reverse direction)
   digitalWrite(LBACK,HIGH);
   digitalWrite(RBACK,HIGH);
@@ -68,14 +69,14 @@ if(Serial.available()){
   digitalWrite(RBACK,LOW);
 }
   
-else if(t == 76){      //turn LEFT (right side motors rotate in forward direction,  left side motors rotate backward)
+else if(t == 53){      //turn LEFT (right side motors rotate in forward direction,  left side motors rotate backward)
   digitalWrite(RFOR,HIGH);
   digitalWrite(LBACK,HIGH);
 
   digitalWrite(LFOR,LOW);
   digitalWrite(RBACK,LOW);
 
-  delay(Spin_D);
+  delay(Spin_D_L);
 
   digitalWrite(LFOR,LOW);
   digitalWrite(LBACK,LOW);
@@ -83,14 +84,14 @@ else if(t == 76){      //turn LEFT (right side motors rotate in forward directio
   digitalWrite(RBACK,LOW);
 }   
 
-else  if(t == 82){      //turn RT (left side motors rotate in forward direction,  right side motors rotate backward)
+else  if(t == 52){      //turn RT (left side motors rotate in forward direction,  right side motors rotate backward)
   digitalWrite(LFOR,HIGH);
   digitalWrite(RBACK,HIGH);
   
   digitalWrite(LBACK,LOW);
   digitalWrite(RFOR,LOW);
 
-  delay(Spin_D);
+  delay(Spin_D_R);
 
   digitalWrite(LFOR,LOW);
   digitalWrite(LBACK,LOW);
@@ -98,7 +99,7 @@ else  if(t == 82){      //turn RT (left side motors rotate in forward direction,
   digitalWrite(RBACK,LOW);
 }
 
-else if(t ==83){
+else if(t == 51){
         //STOP (all motors stop)
   digitalWrite(LFOR,LOW);
   digitalWrite(LBACK,LOW);
